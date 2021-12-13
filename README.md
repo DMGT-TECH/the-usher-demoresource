@@ -14,8 +14,8 @@ None (unless you want to tweak security, like lock down for access only from a p
 
 Your client application should do the following steps:
 
-1. Authenticate (obtain an IdP token from Auth0) for a user like test-user1@dmgtoocto.com
-1. Get authorization (obtain a TheUsher token) from The Usher by calling /self/token
-1. Access one of the API endpoints like /add/ passing the TheUsher token for Authorization: Bearer, and values for the left and right operands.
+1. Authenticate (obtain an IdP token from Auth0) for a user like `test-user1@dmgtoocto.com`
+1. Get authorization (obtain a TheUsher token) from The Usher by calling `/self/token`
+1. Access one of the API endpoints like `/add/` passing the The Usher token in the header as `Authorization: Bearer <token>`, and values for the left and right operands.
 
 The Glitch client application at https://my-theusher-client.glitch.me/ is a convenient front-end client that does all of the above.
