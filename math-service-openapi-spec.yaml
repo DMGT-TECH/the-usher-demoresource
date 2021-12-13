@@ -1,0 +1,129 @@
+openapi: 3.0.1
+info:
+  title: Math Service
+  description: Simple authorized math service
+  termsOfService: replace_with_url
+  contact:
+    email: mathservice@dmgt.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.0.1
+externalDocs:
+  description: Requirements doc
+  url: https://dmgtcloud-my.sharepoint.com/:w:/g/personal/patryk_laurent_dmgt_com/Eb2xvNe6YA1LqSySXfqgn-4BUjBadg3nX_AEKnmH1xK1XA?e=RletVi
+#servers:
+#- url: https://
+#- url: http://
+
+paths:
+  /:
+    get:
+      'x-swagger-router-controller': 'endpoint_root'
+      operationId: root
+      summary: Get information.
+      responses:
+        '200':
+          description: Returns information about this server
+          content:
+            text/html:
+              schema:
+                type: string
+                example: <html>Information</html>
+  /add:
+    post:
+      'x-swagger-router-controller': 'endpoint_add'
+      operationId: add
+      summary: Add two numbers together.
+      security:
+        - bearerSelfAuth: []
+      parameters:
+        - name: authorization
+          schema:
+            type: string
+          required: true
+          in: header
+          description: |-
+            The client must present an Usher-issued JWT with the required scope.
+        - name: left
+          in: header
+          schema:
+            type: string
+          required: true
+        - name: right
+          in: header
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Returns a sum
+        '403':
+          description: If unauthorized.
+  /sub:
+    post:
+      'x-swagger-router-controller': 'endpoint_subtract'
+      operationId: subtract
+      summary: Subtract two numbers from each other.
+      security:
+        - bearerSelfAuth: []
+      parameters:
+        - name: authorization
+          schema:
+            type: string
+          required: true
+          in: header
+          description: |-
+            The client must present an Usher-issued JWT with the required scope.
+        - name: left
+          in: header
+          schema:
+            type: string
+          required: true
+        - name: right
+          in: header
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Returns a difference
+        '403':
+          description: If unauthorized.
+  /div:
+    post:
+      'x-swagger-router-controller': 'endpoint_divide'
+      operationId: divide
+      summary: Subtract two numbers from each other.
+      security:
+        - bearerSelfAuth: []
+      parameters:
+        - name: authorization
+          schema:
+            type: string
+          required: true
+          in: header
+          description: |-
+            The client must present an Usher-issued JWT with the required scope.
+        - name: left
+          in: header
+          schema:
+            type: string
+          required: true
+        - name: right
+          in: header
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Returns a quotient
+        '403':
+          description: If unauthorized.
+
+components:
+  securitySchemes:
+    bearerSelfAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
