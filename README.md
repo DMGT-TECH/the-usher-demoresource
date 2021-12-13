@@ -1,4 +1,4 @@
-# Test Resource Server: Math Service
+# The Usher: Demo Backend Resource Server
 
 This is a backend resource that does simple arithmetic for a client that is authorized by The Usher.
 
