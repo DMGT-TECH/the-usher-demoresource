@@ -16,7 +16,7 @@ async function verifyAndDecodeToken(token) {
     let issuerClaim = decodedToken.payload.iss; // Use iss claim to look up appropriate JWKS.
     if (!issuerClaim.endsWith("/")) { issuerClaim += "/"; }
     const jwks_uri = issuerClaim + ".well-known/jwks.json";
-    
+
     console.log("Using " + jwks_uri + " for iss claim " + issuerClaim);
     const client = jwksRsa({ rateLimit: true, jwksRequestsPerMinute: 10, jwksUri: jwks_uri });
     const getSigningKeyF = promisify(client.getSigningKey);
@@ -43,11 +43,14 @@ async function verifyTokenMiddleware(req, secDef, token, next) {
     try {
         const payload = await verifyAndDecodeToken(token);  // If the token isn't verified an exception will be thrown
 
-        if (payload.scope.includes("test-permission1")) {
-            return next()
-        } else {
-            next(req.res.status(401).send("Unauthorized: no scope test-permission1."));
-        }
+        // If you wanted to check a permission here (for all APIs) rather than at an
+        // individual api endpoint, you could insert that check here, for example:
+        //
+        //if (payload.scope.includes("test-permission1")) {
+        //    return next()
+        //} else {
+        //    next(req.res.status(401).send("Unauthorized: no scope test-permission1."));
+        //}
     }
     catch (err) {
       next(req.res.status(401).send("Unauthorized: Authorization is not valid.\n" + err));
