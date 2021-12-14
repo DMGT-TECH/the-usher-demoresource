@@ -6,8 +6,8 @@ function add(req, res) {
         res.status(403).send("Unauthorized, need test-permission1")
         return
     }
-    const lhs = req.headers["left"]
-    const rhs = req.headers["right"]
+    const lhs = req.body["left"]
+    const rhs = req.body["right"]
     const result = {'result': (parseFloat(lhs) + parseFloat(rhs))}
     res.status(200).send(result)
 }

@@ -26,6 +26,7 @@ const options_object = {
 var spec = fs.readFileSync('math-service-openapi-spec.yaml', 'utf8');
 var oasDoc = jsyaml.safeLoad(spec);
 var expressApp = express();
+expressApp.use(express.json());
 expressApp.use(cors());
 oasTools.configure(options_object);
 oasTools.initialize(oasDoc, expressApp, function() {

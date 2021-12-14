@@ -51,6 +51,7 @@ async function verifyTokenMiddleware(req, secDef, token, next) {
         //} else {
         //    next(req.res.status(401).send("Unauthorized: no scope test-permission1."));
         //}
+        return next()
     }
     catch (err) {
       next(req.res.status(401).send("Unauthorized: Authorization is not valid.\n" + err));

@@ -45,16 +45,20 @@ paths:
           in: header
           description: |-
             The client must present an Usher-issued JWT with the required scope.
-        - name: left
-          in: header
-          schema:
-            type: string
-          required: true
-        - name: right
-          in: header
-          schema:
-            type: string
-          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                left:
+                  type: number
+                right:
+                  type: number
+              required:
+                - left
+                - right
       responses:
         '200':
           description: Returns a sum
@@ -75,16 +79,20 @@ paths:
           in: header
           description: |-
             The client must present an Usher-issued JWT with the required scope.
-        - name: left
-          in: header
-          schema:
-            type: string
-          required: true
-        - name: right
-          in: header
-          schema:
-            type: string
-          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                left:
+                  type: number
+                right:
+                  type: number
+              required:
+                - left
+                - right
       responses:
         '200':
           description: Returns a difference
@@ -105,16 +113,20 @@ paths:
           in: header
           description: |-
             The client must present an Usher-issued JWT with the required scope.
-        - name: left
-          in: header
-          schema:
-            type: string
-          required: true
-        - name: right
-          in: header
-          schema:
-            type: string
-          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                left:
+                  type: number
+                right:
+                  type: number
+              required:
+                - left
+                - right
       responses:
         '200':
           description: Returns a quotient
